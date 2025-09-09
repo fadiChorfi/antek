@@ -222,7 +222,7 @@ html {
   }
 }
 
-#navs{
+#navs {
   display: flex;
   flex-direction: row;
   height: max-content;
@@ -240,8 +240,6 @@ html {
   justify-items: center;
   justify-content: center;
 }
-
-
 
 /* UIKit Slideshow Custom Styles */
 .section-slideshow {
@@ -309,6 +307,25 @@ html {
   align-items: center;
   gap: 2rem;
   margin-bottom: 2rem;
+}
+
+.find-box {
+  display: block;
+  position: relative;
+  margin-top: -25px;
+  padding: 60px 60px 70px;
+  background-color: #edb509;
+}
+
+.find-box::after {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 9px;
+  background-image: url(/decor-lines-white.svg);
+  content: "";
 }
 
 /* UIKit Navigation arrows styling */

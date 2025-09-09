@@ -141,9 +141,9 @@ function Navbar() {
             />
           </div>
         ) : (
-          <nav className=" relative bg-red-700">
-            <NavigationMenu className=" absolute top-0  translate-y-[15%] min-h-full bg-amber-500   w-full">
-              <NavigationMenuList className=" min-h-full">
+          <nav className=" relative flex-1 flex justify-center">
+            <NavigationMenu className=" absolute top-0   translate-y-[15%] right-4  min-h-full   w-full">
+              <NavigationMenuList className=" min-h-full ">
                 {navLinks.map((link) => (
                   <NavigationMenuItem key={link.name}>
                     {link.submenu ? (

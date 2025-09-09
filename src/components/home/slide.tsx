@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect, useRef } from "react";
+import { useUIkit, initializeUIkit } from "../../lib/uikit";
 
 const slides = [
   {
@@ -21,11 +22,13 @@ const slides = [
 
 function Slide() {
   const slideshowRef = useRef<HTMLDivElement>(null);
+  // Initialize UIkit for this component
+  useUIkit();
 
   useEffect(() => {
     // Initialize UIKit slideshow when component mounts
-    if (typeof window !== "undefined" && window.UIkit && slideshowRef.current) {
-      window.UIkit.slideshow(slideshowRef.current, {
+    if (slideshowRef.current) {
+      initializeUIkit(slideshowRef.current, "slideshow", {
         animation: "fade",
         autoplay: true,
         autoplayInterval: 5000,

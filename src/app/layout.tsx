@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import Script from "next/script";
 import "./globals.css";
 import Navbar from "@/components/home/nav-bar";
 
@@ -44,18 +45,19 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/uikit@3.18.3/dist/css/uikit.min.css"
         />
-        <script
-          src="https://cdn.jsdelivr.net/npm/uikit@3.18.3/dist/js/uikit.min.js"
-          defer
-        ></script>
-        <script
-          src="https://cdn.jsdelivr.net/npm/uikit@3.18.3/dist/js/uikit-icons.min.js"
-          defer
-        ></script>
       </head>
       <body>
         <Navbar />
         {children}
+
+        <Script
+          src="https://cdn.jsdelivr.net/npm/uikit@3.18.3/dist/js/uikit.min.js"
+          strategy="afterInteractive"
+        />
+        <Script
+          src="https://cdn.jsdelivr.net/npm/uikit@3.18.3/dist/js/uikit-icons.min.js"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
