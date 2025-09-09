@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import {
   NavigationMenu,
@@ -45,13 +45,41 @@ const navLinks = [
 
 function Navbar() {
   const [showSearchInput, setShowSearchInput] = useState<boolean>(false);
+  const [isHeaderVisible, setIsHeaderVisible] = useState<boolean>(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Show header only when at the very top (within 5px tolerance)
+      // Hide header when scrolling down, but prevent issues with overscroll
+      if (currentScrollY <= 5) {
+        setIsHeaderVisible(true);
+      } else if (currentScrollY > 5) {
+        setIsHeaderVisible(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <div className="flex flex-col w-full h-full  shadow-xs ">
-      <div className="flex flex-row justify-between h-full w-full items-center px-4 py-3 bg-primary/95 text-secondary">
-        {" "}
+    <div
+      className={`w-full block shadow-xs sticky z-50 bg-white transition-transform duration-300 ${
+        isHeaderVisible ? "top-0" : "-top-[50px]"
+      }`}
+    >
+      <div
+        className="flex flex-row justify-between h-full w-full items-center px-4 py-3 bg-primary/95 text-secondary"
+        id="nav-header"
+      >
         <div className="flex flex-row gap-2 items-center">
           <i className="fa-regular fa-hand-point-right text-yellow"></i>
-          <h4 className=" text-[15px] ">
+          <h4 className="  text-secondary ">
             <Link
               href="#!"
               className="font-bold underline hover:no-underline hover:text-yellow"
@@ -62,7 +90,6 @@ function Navbar() {
           </h4>
         </div>
         <div className="flex flex-row gap-6 items-center text-base">
-          {" "}
           <div className="flex flex-row gap-3 items-center ">
             <i className="fa-regular fa-clock text-yellow"></i>
             <span>Mon - Sat 9.00 - 18.00</span>
@@ -81,9 +108,8 @@ function Navbar() {
             ))}
           </div>
         </div>
-      </div>{" "}
-      <div className="flex flex-row items-stretch min-w-full justify-between pl-4 ">
-        {" "}
+      </div>
+      <div className="flex flex-row items-stretch min-w-full h-full justify-between pl-4">
         <div className="flex flex-row items-center justify-between pr-6 py-">
           <Image
             src="/logo.png"
@@ -101,29 +127,27 @@ function Navbar() {
               </h3>
               <span className=" text-primary font-semibold text-2xl">
                 236-547-8900
-              </span>{" "}
-            </div>{" "}
-          </div>{" "}
+              </span>
+            </div>
+          </div>
           <div className="w-px h-16 bg-gray-300 mx-6"></div>
-        </div>{" "}
+        </div>
         {showSearchInput ? (
           <div className="flex flex-row items-center flex-1 px-8">
             <input
               type="text"
-              className="w-full border-0 outline-none focus:border-0 focus:outline-none text-xl placeholder:text-gray-400 bg-transparent"
+              className="navbar-search-input w-full border-0 outline-none text-xl placeholder:text-gray-400 bg-transparent"
               placeholder="Search..."
-              autoFocus
             />
           </div>
         ) : (
-          <nav className="flex flex-row gap-8 items-center ">
-            <NavigationMenu>
-              <NavigationMenuList className=" flex flex-row items-center">
+          <nav className=" relative bg-red-700">
+            <NavigationMenu className=" absolute top-0  translate-y-[15%] min-h-full bg-amber-500   w-full">
+              <NavigationMenuList className=" min-h-full">
                 {navLinks.map((link) => (
                   <NavigationMenuItem key={link.name}>
                     {link.submenu ? (
                       <>
-                        {" "}
                         <NavigationMenuTrigger className="text-primary font-medium hover:text-yellow bg-transparent hover:bg-transparent data-[state=open]:bg-transparent data-[state=open]:text-yellow">
                           {link.name.toUpperCase()}
                         </NavigationMenuTrigger>
@@ -160,7 +184,7 @@ function Navbar() {
         )}
         <div className="flex flex-row items-stretch">
           <button
-            className="flex items-center justify-center px-6 hover:text-yellow transition-colors border-l border-gray-300"
+            className="flex items-center border-l justify-center px-6 hover:text-yellow transition-colors  border-gray-300  button-search"
             title="Search"
             aria-label="Search"
             onClick={() => setShowSearchInput(!showSearchInput)}
@@ -168,11 +192,11 @@ function Navbar() {
             <i className="fas fa-search text-primary text-2xl"></i>
           </button>
           <button
-            className="relative flex items-center justify-center px-6  bg-yellow hover:text-yellow transition-colors border-l border-gray-300"
+            className="nav-bar-cart-btn relative flex items-center justify-center px-6 transition-colors  hover:text-yellow"
             title="Shopping Cart"
             aria-label="Shopping Cart"
           >
-            <i className="fas fa-shopping-cart text-secondary text-2xl "></i>
+            <i className="fas fa-shopping-cart text-secondary text-2xl"></i>
           </button>
         </div>
       </div>

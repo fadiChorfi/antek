@@ -40,6 +40,18 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         />
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/uikit@3.18.3/dist/css/uikit.min.css"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/uikit@3.18.3/dist/js/uikit.min.js"
+          defer
+        ></script>
+        <script
+          src="https://cdn.jsdelivr.net/npm/uikit@3.18.3/dist/js/uikit-icons.min.js"
+          defer
+        ></script>
       </head>
       <body>
         <Navbar />

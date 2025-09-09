@@ -10,12 +10,7 @@ module.exports = {
       fontFamily: {
         barlow: ["var(--font-barlow)"],
       },
-      colors: {
-        primary: "#222222",
-        secondary: "#ffffff",
-        yellow: "#EDB509",
-      },
-    },
+         },
   },
   plugins: [],
 };

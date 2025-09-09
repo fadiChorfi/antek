@@ -1,7 +1,11 @@
+import Find from "@/components/home/find";
+import Slide from "@/components/home/slide";
+
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center">
-      
+    <div className="">
+      <Slide />
+      <Find />
     </div>
   );
 }

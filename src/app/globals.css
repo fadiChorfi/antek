@@ -1,7 +1,13 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:is(.dark *));
+html {
+  scroll-snap-type: y mandatory;
+}
 
+section {
+  scroll-snap-align: start;
+  height: 100vh;
+}
 @theme {
   --color-primary: #222222;
   --color-secondary: #ffffff;
@@ -214,4 +220,308 @@ html {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+#navs{
+  display: flex;
+  flex-direction: row;
+  height: max-content;
+  width: max-content;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+}
+#nav-links {
+  display: flex;
+  flex-direction: row;
+  height: max-content;
+  width: max-content;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+}
+
+
+
+/* UIKit Slideshow Custom Styles */
+.section-slideshow {
+  min-height: 400px;
+  max-height: 700px;
+  height: 100vh;
+}
+
+.slideshow-item {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slideshow-item__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 50;
+}
+
+.slideshow-item__desc {
+  color: white;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 20;
+}
+
+.slideshow-item__title {
+  color: white;
+  font-weight: bold;
+  font-size: 4.5rem;
+  line-height: 1.2;
+  position: relative;
+  z-index: 20;
+}
+
+.slideshow-item__title::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1.5rem;
+  margin-top: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  background-image: url("/decor-lines.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.header-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* UIKit Navigation arrows styling */
+.uk-slidenav {
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  padding: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.uk-slidenav:hover {
+  color: #edb509;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+/* Force font size for slide title inside UIKit slideshow */
+.uk-slideshow .slide-title {
+  font-size: 2.5rem !important;
+  line-height: 1 !important;
+}
+
+/* Override UIKit default styles */
+/* Reset UIKit link colors to allow Tailwind classes to work */
+a {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+/* Ensure Tailwind text color utilities work */
+.text-red-800 {
+  color: rgb(153 27 27) !important;
+}
+
+.text-primary {
+  color: #222222 !important;
+}
+
+.text-secondary {
+  color: #ffffff !important;
+}
+
+.text-yellow {
+  color: #edb509 !important;
+}
+
+/* Override UIKit button styles */
+button {
+  background: unset !important;
+  border: unset !important;
+  color: inherit !important;
+}
+
+/* Preserve navbar specific styles */
+.navbar-protected .text-primary {
+  color: #222222 !important;
+}
+
+.navbar-protected .text-secondary {
+  color: white !important;
+}
+
+.navbar-protected .hover\:text-yellow:hover {
+  color: #edb509 !important;
+}
+
+/* Protect Tailwind font-size utilities from UIKit override */
+.text-xs {
+  font-size: 0.75rem !important;
+}
+.text-sm {
+  font-size: 0.875rem !important;
+}
+.text-base {
+  font-size: 1rem !important;
+}
+.text-lg {
+  font-size: 1.125rem !important;
+}
+.text-xl {
+  font-size: 1.25rem !important;
+}
+.text-2xl {
+  font-size: 1.5rem !important;
+}
+.text-3xl {
+  font-size: 1.875rem !important;
+}
+.text-4xl {
+  font-size: 2.25rem !important;
+}
+.text-5xl {
+  font-size: 3rem !important;
+}
+.text-6xl {
+  font-size: 3.75rem !important;
+}
+
+/* Protect custom font sizes */
+.text-\[15px\] {
+  font-size: 15px !important;
+}
+
+/* Protect font weights */
+.font-thin {
+  font-weight: 100 !important;
+}
+.font-extralight {
+  font-weight: 200 !important;
+}
+.font-light {
+  font-weight: 300 !important;
+}
+.font-normal {
+  font-weight: 400 !important;
+}
+.font-medium {
+  font-weight: 500 !important;
+}
+.font-semibold {
+  font-weight: 600 !important;
+}
+.font-bold {
+  font-weight: 700 !important;
+}
+.font-extrabold {
+  font-weight: 800 !important;
+}
+.font-black {
+  font-weight: 900 !important;
+}
+
+/* Protect margin and padding utilities */
+.mb-8 {
+  margin-bottom: 2rem !important;
+}
+.mt-6 {
+  margin-top: 1.5rem !important;
+}
+.px-4 {
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+.py-3 {
+  padding-top: 0.75rem !important;
+  padding-bottom: 0.75rem !important;
+}
+.px-6 {
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+}
+
+/* Protect display utilities */
+.block {
+  display: block !important;
+}
+.flex {
+  display: flex !important;
+}
+.inline-block {
+  display: inline-block !important;
+}
+
+/* Protect positioning */
+.sticky {
+  position: sticky !important;
+}
+.relative {
+  position: relative !important;
+}
+.absolute {
+  position: absolute !important;
+}
+.button-search {
+  border-left: 1px solid #d1d5db !important; /* gray-300 */
+}
+
+/* Protect z-index */
+.z-50 {
+  z-index: 50 !important;
+}
+.z-10 {
+  z-index: 10 !important;
+}
+
+/* Reset all h1-h6 and p elements to not inherit UIKit styles */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  line-height: inherit !important;
+  color: inherit !important;
+}
+
+/* Force bg-yellow, border, and icon color for cart button in navbar */
+.nav-bar-cart-btn {
+  background-color: #edb509 !important;
+  border-left: 1px solid #d1d5db !important; /* gray-300 */
+}
+.nav-bar-cart-btn .fa-shopping-cart {
+  color: #fff !important;
+}
+
+/* Remove focus border from search input in navbar */
+.navbar-search-input:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
